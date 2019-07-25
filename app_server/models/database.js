@@ -6,7 +6,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 // To avoid deprecation warnings
-mongoose.set('useNewUrlParser', true);
+//mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
