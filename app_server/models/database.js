@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 require('./locations');
 let dbURI = 'mongodb://localhost/Loc8r';
 if(process.env.NODE_ENV === 'production'){
-  dbURI = 'mongodb+srv://lucashenrique:Linkinpark_001@cluster0-h6qbp.mongodb.net/test?retryWrites=true&w=majority';
+  dbURI = process.env.MONGODB_URI;
 }
 
 // To avoid deprecation warnings
-//mongoose.set('useNewUrlParser', true);
+mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
