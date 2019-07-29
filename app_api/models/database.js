@@ -32,23 +32,16 @@ const shutdown = (msg, callback) => {
   });
 };
 
-// For nodemon restarts
-process.once('SIGUSR2', () => {
-  shutdown('nodemon restart', () => {
-    process.kill(process.pid, 'SIGUSR2');
-  });
-});
-
 // For app termination
 process.once('SIGINT', () => {
   shutdown('app termination', () => {
-    process.kill(process.pid, 'SIGUSR2');
+    process.kill(process.pid, 'SIGINT');
   });
 });
 
 // For heroku app termination
 process.once('SIGTERM', () => {
   shutdown('heroku app termination', () => {
-    process.kill(process.pid, 'SIGUSR2');
+    process.kill(process.pid, 'SIGTERM');
   });
 });

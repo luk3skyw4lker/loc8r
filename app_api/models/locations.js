@@ -14,15 +14,21 @@ const openingTimesSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  author: String,
+  author: {
+    type: String,
+    required: true
+  },
   rating: {
     type: Number,
+    required: true,
     default: 0,
     min: 0,
     max: 5
   },
-  timestamp: String,
-  reviewText: String,
+  reviewText: {
+    type: String,
+    required: true
+  },
   createdOn: {
     type: Date,
     default: Date.now
@@ -39,10 +45,8 @@ const locationSchema = new mongoose.Schema({
     required: true
   },
   facilities: [ String ],
-  coords: {
-    type: { type: String },
-    coordinates: [ Number ]
-  },
+  coords: [ Number ],
+  //rating: Number,
   openingTimes: [ openingTimesSchema ],
   reviews: [ reviewSchema ]
 });
