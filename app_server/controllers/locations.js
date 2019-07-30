@@ -132,7 +132,7 @@ const homelist = (req, res, responseBody) => {
     qs: {
       lng: -0.7992599,
       lat: 51.378091,
-      maxDistance: 20
+      maxDistance: 20000
     }
   };
   request(requestOptions, (err, {statusCode}, body) => {
