@@ -6,10 +6,13 @@ const locationsCreate = (req, res) => {
     name: req.body.name,
     address: req.body.address,
     facilities: req.body.facilities.split(","),
-    coords: [
-      parseFloat(req.body.lng),
-      parseFloat(req.body.lat),
-    ],
+    coords: {
+      type: "Point",
+      coordinates: [
+        parseFloat(req.body.lng),
+        parseFloat(req.body.lat)
+      ]
+    },
     openingTimes: [
       {
         days: req.body.days1,
@@ -58,14 +61,16 @@ const locationsUpdateOne = (req, res) => {
           .status(400)
           .json(err);
       }
-
       location.name = req.body.name;
       location.address = req.body.address;
       location.facilities = req.body.facilities.split(',');
-      location.coords = [
-        parseFloat(req.body.lng),
-        parseFloat(req.body.lat)
-      ];
+      location.coords = {
+        type: "Point",
+        coordinates: [
+          parseFloat(req.body.lng),
+          parseFloat(req.body.lat)
+        ]
+      }
       location.openingTimes = [{
         days: req.body.days1,
         opening: req.body.opening1,
