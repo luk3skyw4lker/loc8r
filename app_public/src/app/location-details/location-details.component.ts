@@ -18,10 +18,9 @@ export class LocationDetailsComponent implements OnInit {
   }
 
   public formVisible: boolean = false;
+  public formError: string;
 
   public googleAPIKey: string = 'AIzaSyBlGLcyk3vTugkp7WZyTG6g_gF1HWH4xes';
-
-  public formError: string;
 
   constructor(private loc8rDataService: Loc8rDataService) { }
 
@@ -40,7 +39,7 @@ export class LocationDetailsComponent implements OnInit {
     this.formError = '';
     if(this.formIsValid()){
       console.log(this.newReview);
-      this.loc8rDataService.addReviewByLocationId(this.location.id, this.newReview).then((review: Review) => {
+      this.loc8rDataService.addReviewByLocationId(this.location._id, this.newReview).then((review: Review) => {
         console.log('Review saved', review);
         let reviews = this.location.reviews.slice(0);
         reviews.unshift(review);
