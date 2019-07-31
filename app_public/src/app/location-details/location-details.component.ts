@@ -39,8 +39,6 @@ export class LocationDetailsComponent implements OnInit {
     this.formError = '';
     if(this.formIsValid()){
       console.log(this.newReview);
-      console.log(this.location._id);
-      console.log(this.location.id);
       if(this.location._id === "undefined"){
         console.log("Nao ta funcionando essa merda");
       } else {
