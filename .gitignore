@@ -35,6 +35,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+/public/javascripts/jquery-3.4.1.slim.min.js
 
 # Typescript v1 declaration files
 typings/

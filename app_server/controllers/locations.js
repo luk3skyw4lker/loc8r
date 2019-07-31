@@ -3,7 +3,7 @@ const apiOptions = {
   server: 'http://localhost:3000'
 };
 if(process.env.NODE_ENV === 'production'){
-  apiOptions.server = 'https://mysterious-depths-49888.herokuapp.com';
+  apiOptions.server = process.env.API_URL;
 }
 
 const getLocationInfo = (req, res, callback) => {
