@@ -39,6 +39,13 @@ export class LocationDetailsComponent implements OnInit {
     this.formError = '';
     if(this.formIsValid()){
       console.log(this.newReview);
+      console.log(this.location._id);
+      console.log(this.location.id);
+      if(this.location._id === "undefined"){
+        console.log("Nao ta funcionando essa merda");
+      } else {
+        console.log("Ta funcionando esse carai");
+      }
       this.loc8rDataService.addReviewByLocationId(this.location._id, this.newReview).then((review: Review) => {
         console.log('Review saved', review);
         let reviews = this.location.reviews.slice(0);
