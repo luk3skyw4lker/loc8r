@@ -3,7 +3,7 @@
   <div class="col-12 col-md-8">
     <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead</p>
     <form (submit)="onRegisterSubmit()">
-      <div role="alert" *ngIf="formErrors" class="alert alert-danger">{{ formError }}</div>
+      <div role="alert" *ngIf="formError" class="alert alert-danger">{{ formError }}</div>
       <div class="form-group">
         <label for="name">Full Name</label>
         <input class="form-control" id="name" name="name" placeholder="Enter your name" [(ngModel)]="credentials.name">

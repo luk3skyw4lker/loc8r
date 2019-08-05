@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   public onLoginSubmit(): void {
     this.formError = '';
     if (
-      !this.credentials.name ||
       !this.credentials.email ||
       !this.credentials.password
     ) {
