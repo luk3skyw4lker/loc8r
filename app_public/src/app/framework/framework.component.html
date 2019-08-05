@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-md navbar-light">
   <div class="container">
-    <a href="/" class="navbar-brand">Loc8r</a>
+    <a href="/" class="navbar navbar-brand">Loc8r</a>
       <button type="button" data-toggle="collapse" data-target="#navbarMain" class="navbar-toggler">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,6 +9,17 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a routerLink="about" routerLinkActive="active" class="nav-link">About</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="login" class="nav-link" *ngIf="!isLoggedIn()">Sign in</a>
+        </li>
+        <li class="nav-item dropdown" routerLinkActive="active" *ngIf="isLoggedIn()">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{ getUsername() }}</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="doLogout()">Logout</a>
+            </div>
         </li>
       </ul>
     </div>

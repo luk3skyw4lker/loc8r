@@ -1,9 +1,12 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
 const logger = require('morgan');
 require('./app_api/models/database');
+require('./app_api/config/passport');
 
 //const usersRouter = require('./app_server/routes/users');
 //const indexRouter = require('./app_server/routes/index');
@@ -22,19 +25,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public')));
 app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+app.use(passport.initialize());
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
+  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
 app.use('/api', apiRouter);
 app.get(/(\/about)|(\/location\/[a-z0-9]{29})/, function(req, res, next){
-  res.sendFile(path.join(__dirname, 'app_public', 'index.html'));
-})
+  res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
+});
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+
+app.use((err, req, res, next) => {
+  if(err.name === 'UnauthorizedError'){
+    res.status(401).json({ "Error": err.name + ": " + err.message });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
