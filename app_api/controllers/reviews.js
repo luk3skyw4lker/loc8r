@@ -44,14 +44,17 @@ const doAddReview = (req, res, location, author) => {
 const doSetAveraging = (location) => {
   if(location.reviews && location.reviews.length > 0) {
     const count = location.reviews.length;
-    const total = location.reviews.reduce((acc, rating) => {
+    const total = location.reviews.reduce((acc, {rating}) => {
+      console.log("acc: " + acc + "rating: " + rating);
       return acc + rating;
     }, 0);
 
+    console.log("total: " + total + " count: " + count);
     location.rating = parseInt(total / count, 10);
     location.save(err => {
       if(err){
-        console.log(err);
+        console.log("Erro");
+        //console.log(err);
       } else {
         console.log("Average rating updated to", location.rating);
       }
