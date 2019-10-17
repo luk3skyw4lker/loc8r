@@ -8,9 +8,6 @@ const logger = require('morgan');
 require('./app_api/models/database');
 require('./app_api/config/passport');
 
-//const usersRouter = require('./app_server/routes/users');
-//const indexRouter = require('./app_server/routes/index');
-
 // Route to api
 const apiRouter = require('./app_api/routes/index');
 
@@ -26,15 +23,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public')));
-app.use(express.static(path.join(__dirname, 'app_public', 'test')));
+app.use(express.static(path.join(__dirname, 'app_public', 'build')));
 app.use(passport.initialize());
 
 // Handling cors errors
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
-  //res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
@@ -42,8 +37,6 @@ app.use('/api', apiRouter);
 app.get(/(\/about)|(\/location\/[a-z0-9]{29})/, function(req, res, next){
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
 });
-//app.use('/', indexRouter);
-//app.use('/users', usersRouter);
 
 app.use((err, req, res, next) => {
   if(err.name === 'UnauthorizedError'){
