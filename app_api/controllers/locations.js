@@ -140,7 +140,8 @@ const locationsListByDistance = async (req, res) => {
   }
   /*res
     .stauts(200)
-    .json({ "status" : "ok" });*/
+    .json({ "status" : "ok" });
+  */
 };
 
 const locationsReadOne = function (req, res) {

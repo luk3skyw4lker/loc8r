@@ -21,7 +21,7 @@ export class LocationDetailsComponent implements OnInit {
   public formVisible: boolean = false;
   public formError: string;
 
-  public googleAPIKey: string = 'AIzaSyBlGLcyk3vTugkp7WZyTG6g_gF1HWH4xes';
+  public googleAPIKey: string = 'AIzaSyCeemd5Gl_AIZgJFG6jE-SUaovKHz4t6OE';
 
   constructor(private loc8rDataService: Loc8rDataService, private authenticationService: AuthenticationService) { }
 

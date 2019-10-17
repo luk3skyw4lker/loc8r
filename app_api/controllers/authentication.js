@@ -12,7 +12,7 @@ const register = (req, res) => {
   user.setPassword(req.body.password);
   user.save((err) => {
     if(err){
-      res.status(500).json({ "Error": "Internal error on saving user" });
+      res.status(400).json({ "Error": "Bad request" });
     } else {
       const token = user.generateJwt();
       res.status(201).json({ token });
@@ -24,8 +24,10 @@ const login = (req, res) => {
   if(!req.body.email || !req.body.password){
     return res.status(400).json({ "Error": "All fields required" });
   }
+  
   passport.authenticate('local', (err, user, info) => {
     let token;
+    console.log(user);
     if(err){
       console.log(err);
       return res.status(500).json({ "Error": "Internal error on authenticating" });
