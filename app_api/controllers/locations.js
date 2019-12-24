@@ -27,7 +27,7 @@ const locationsCreate = (req, res) => {
       }
     ]
   }, (err, location) => {
-    if(err){
+    if (err) {
       res.status(400).json(err);
     } else {
       res.status(201).json(location);
@@ -94,7 +94,7 @@ const locationsUpdateOne = (req, res) => {
         }
       });
     }
-  );
+    );
 };
 
 const locationsListByDistance = async (req, res) => {
@@ -111,8 +111,8 @@ const locationsListByDistance = async (req, res) => {
     maxDistance: 20000,
     limit: 10
   };
-  if((!lng && lng !== 0) || (!lat && lat !== 0)){
-    return res.status(400).json({ "message":"lng and lat parameters are required" });
+  if ((!lng && lng !== 0) || (!lat && lat !== 0)) {
+    return res.status(400).json({ "message": "lng and lat parameters are required" });
   }
   try {
     const results = await Loc.aggregate([
@@ -138,40 +138,31 @@ const locationsListByDistance = async (req, res) => {
   } catch (err) {
     res.status(404).json(err);
   }
-  /*res
-    .stauts(200)
-    .json({ "status" : "ok" });
-  */
 };
 
 const locationsReadOne = function (req, res) {
   Loc
     .findById(req.params.locationid)
     .exec((err, location) => {
-      if(!location){
-        return res.status(404).json({ "message" : "Location not found" });
+      if (!location) {
+        return res.status(404).json({ "message": "Location not found" });
       } else if (err) {
-        return res.status(500).json({err});
+        return res.status(500).json({ err });
       }
       res.status(200).json(location);
     });
-   /*res
-    .stauts(200)
-    .json({ "status" : "ok" });
-  */
 };
 
 const locationsDeleteOne = function (req, res) {
   const { locationid } = req.params;
-  if(locationid){
+  if (locationid) {
     Loc.findByIdAndRemove(locationid).exec((err, location) => {
-      if(err) return res.status(500).json(err);
+      if (err) return res.status(500).json(err);
       res.status(204).json(null);
     });
   } else {
     res.status(400).json({ "Error": "Location id is required" });
   }
-  //res.stauts(200).json({ "status" : "ok" });
 };
 
 module.exports = {

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
-//import { AppComponent } from './app.component';
 import { HomeListComponent } from './home-list/home-list.component';
 import { DistancePipe } from './distance.pipe';
 import { FrameworkComponent } from './framework/framework.component';
@@ -24,7 +23,6 @@ import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    //AppComponent,
     HomeListComponent,
     DistancePipe,
     FrameworkComponent,
@@ -47,7 +45,6 @@ import { LoginComponent } from './login/login.component';
     FormsModule
   ],
   providers: [],
-  //bootstrap: [AppComponent]
   bootstrap: [FrameworkComponent]
 })
 export class AppModule { }

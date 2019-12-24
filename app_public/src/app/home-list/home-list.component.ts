@@ -29,7 +29,6 @@ export class HomeListComponent implements OnInit {
     const lat: number = position.coords.latitude;
     const lng: number = position.coords.longitude;
     this.loc8rDataService.getLocations(lat, lng).then(foundLocations => {
-      console.log(foundLocations);
       this.message = foundLocations.length > 0 ? '' : 'No places found nearby';
       this.locations = foundLocations;
     });
