@@ -4,7 +4,8 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
 
 // import { Container } from './styles';
@@ -14,7 +15,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
 
   function handleLogin() {
-    navigation.navigate('Home')
+    navigation.navigate('Home');
   }
 
   return (
@@ -45,3 +46,9 @@ export default function Login({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+
+  }
+});

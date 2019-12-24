@@ -1,9 +1,11 @@
 import React from 'react';
-import { } from 'react-native';
+import Routes from './src/routes';
+import 'react-native-gesture-handler';
 
 const App: () => React$Node = () => {
   return (
     <>
+      <Routes />
     </>
   );
 };
