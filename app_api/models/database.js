@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 require('./locations');
 require('./users');
-let dbURI = 'mongodb://localhost/Loc8r';
-if(process.env.NODE_ENV === 'production'){
-  dbURI = process.env.MONGODB_URI;
-}
+const dbURI = process.env.MONGODB_URI;
 
 // To avoid deprecation warnings
-mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
+mongoose.set('useNewUrlParser', true);
 mongoose.set('useCreateIndex', true);
 
 // Starting the connection
